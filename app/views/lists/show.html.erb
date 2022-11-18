@@ -1,0 +1,22 @@
+<div class="container">
+  <h1><%= @list.name %></h1>
+</div>
+<%# cinema-background_01 %>
+<div class="container">
+  <div class="row mt-5">
+    <% @list.bookmarks.each do |bookmark| %>
+      <div class="col-4">
+        <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= bookmark.movie.poster_url %>')">
+          <%= bookmark.comment %>
+          <%= link_to "delete", bookmark_path(bookmark), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "card-remove-link" %>
+        </div>
+      </div>
+    <% end %>
+    <div class="card-tags">
+      <%= link_to "add", new_list_bookmark_path(@list) %>
+    </div>
+    <div class="card-tags">
+      <%= link_to "back to lists", lists_path %>
+    </div>
+  </div>
+</div>
